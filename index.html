@@ -25,16 +25,20 @@
 		var planetarium;
 		S(document).ready(function() {
 			planetarium = S.virtualsky({
-				'id': 'starmap',
-				'projection': 'planechart',
-				'ra': 83.8220833,
-				'dec': -5.3911111,
-				'ground': false,
-				'constellations': true,
-				'fov': 15,
-				'width': window.innerWidth,
-				'height': window.innerHeight,
-				'callback': {
+				id: 'starmap',
+				projection: 'gnomic',
+				lang: 'fr',
+				fov: 9999,
+				height: 800,
+				showplanets: true,
+				showplanetlabels: true,
+				gridlineswidth: 1,
+				gridlines_eq: true,
+				cardinalpoints: true,
+				gradient: true,
+				showstarlabels: true,
+				showposition: true, 
+				callback: {
 					'contextmenu': function(e){
 						console.log('contextmenu callback', e);
 						if(e.ra && e.dec){
@@ -54,17 +58,17 @@
 				}
 			});
 
-			S('button#pleiades').on('click',function(){ planetarium8.panTo(56.8690917,24.1053111,3000); });
-			S('button#M82').on('click',function(){ planetarium8.panTo(148.9684583,69.6797028,3000); });
-			S('button#M1').on('click',function(){ planetarium8.panTo(83.6330833,22.0145000,3000); });
-			S('button#M42').on('click',function(){ planetarium8.panTo(83.8220833,-5.3911111,3000); });
+			S('button#pleiades').on('click',function(){ planetarium.panTo(56.8690917,24.1053111,3000); });
+			S('button#M82').on('click',function(){ planetarium.panTo(148.9684583,69.6797028,3000); });
+			S('button#M1').on('click',function(){ planetarium.panTo(83.6330833,22.0145000,3000); });
+			S('button#M42').on('click',function(){ planetarium.panTo(83.8220833,-5.3911111,3000); });
 		});
 
-		// var w = window.innerWidth;
+		var w = window.innerWidth;
 		// var h = window.innerHeight; 
 
-		// let map = document.getElementById("starmap");
-		// map.setAttribute("style", `width:${w};height:${h};`)
+		let map = document.getElementById("starmap");
+		map.setAttribute("style", `width:${w};height:${h};`)
 	</script>
 
 	<button id="pleiades">Move to The Pleiades</button>
