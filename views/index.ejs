@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualiseur d'étoiles</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">Liste des étoiles</h1>
+
+        <div class="my-3">
+            <!-- Bouton pour afficher la description des colonnes -->
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#columnDescription">
+                📖 Explication des colonnes
+            </button>
+    
+            <!-- Contenu de l'explication des colonnes -->
+            <div class="collapse" id="columnDescription">
+                <div class="card card-body">
+                    <ul>
+                        <li><strong>ID</strong> : Identifiant unique de l'étoile.</li>
+                        <li><strong>Nom</strong> : Nom propre de l'étoile (si disponible).</li>
+                        <li><strong>Spectre</strong> : Type spectral de l’étoile (ex: O, B, A, F, G, K, M).</li>
+                        <li><strong>Magnitude</strong> : Luminosité de l’étoile vue depuis la Terre (plus petit = plus brillant).</li>
+                        <li><strong>Vitesse Radiale</strong> : Vitesse de l’étoile par rapport à nous (en km/s).</li>
+                        <li><strong>Distance</strong> : Distance de l’étoile en parsecs (1 parsec ≈ 3,26 années-lumière).</li>
+                        <li><strong>Coordonnées X, Y, Z</strong> : Position de l’étoile dans un espace tridimensionnel.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <!-- Sidebar pour le tri -->
+            <aside class="col-md-3">
+                <h4>Filtrer par :</h4>
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="/?sort=id">ID</a></li>
+                    <li class="list-group-item"><a href="/?sort=proper">Nom</a></li>
+                    <li class="list-group-item"><a href="/?sort=spect">Spectre</a></li>
+                    <li class="list-group-item"><a href="/?sort=mag">Magnitude</a></li>
+                    <li class="list-group-item"><a href="/?sort=rv">Vitesse Radiale</a></li>
+                    <li class="list-group-item"><a href="/?sort=dist">Distance (parsecs)</a></li>
+                </ul>
+            </aside>
+
+            <!-- Tableau principal -->
+            <section class="col-md-9">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Spectre</th>
+                            <th>Magnitude</th>
+                            <th>Vitesse Radiale</th>
+                            <th>Distance</th>
+                            <th>Coordonnées X</th>
+                            <th>Coordonnées Y</th>
+                            <th>Coordonnées Z</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% stars.forEach(star => { %>
+                            <tr>
+                                <td><%= star.id %></td>
+                                <td><%= star.proper || 'N/A' %></td>
+                                <td><%= star.spect %></td>
+                                <td><%= star.mag %></td>
+                                <td><%= star.rv %></td>
+                                <td><%= star.dist %></td>
+                                <td><%= star.x %></td>
+                                <td><%= star.y %></td>
+                                <td><%= star.z %></td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+
+    <!-- Ajout de Bootstrap JS pour la gestion du collapse -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
